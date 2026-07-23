@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Revival Front (NRF)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Color variables */
+        :root {
+            --nrf-orange: #FF4F18;
+            --nrf-orange-hover: #E03E0F;
+            --nrf-navy: #0B1A30;
+            --nrf-navy-light: #152E52;
+        }
+
+        /* Typography */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            overflow-x: hidden;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .font-serif-content {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Premium Press Down Animation */
+        .btn-press {
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+        }
+        .btn-press:active {
+            transform: scale(0.95);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Nav Pill Buttons */
+        .nav-pill {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        .nav-pill:hover {
+            background-color: var(--nrf-orange);
+            color: #ffffff;
+        }
+        .nav-pill.active {
+            background-color: var(--nrf-orange);
+            color: #ffffff;
+        }
+
+        /* Standard Custom Backgrounds with fallback */
+.bg-page1 {
+    background-image: url('./Images/Page1BG.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.bg-manifesto {
+    background-image: url('./Images/ManifestoBG.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.bg-manifesto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(1px);
+}
+.bg-donate {
+    background: #f7f9fc;
+    position: relative;
+}
+
+.bg-donate::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(1px);
+        }
+.bg-about {
+    background: #f7f9fc;
+    position: relative;
+}
+    .bg-constitution {
+    background: #f7f9fc;
+    position: relative;
+}
+.bg-founder-message {
+    background: #f7f9fc;
+    position: relative;
+}
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Transitions */
+        .page-fade {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+.hidden-page {
+    display: none !important;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@media (max-width: 768px) {
+    .bg-manifesto .relative.z-10,
+    .bg-donate .relative.z-10,
+    .bg-about .relative.z-10,
+    .bg-founder-message .max-w-4xl {
+        width: 95%;
+        max-width: 95%;
+        padding: 1.5rem;
+        border-radius: 24px;
+        margin: 0 auto;
+    }
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+}
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- GLOBAL NAVBAR (Dynamic control for Home, About, Inspirations, Message, Join Us, Donation) -->
+   <header class="fixed top-0 left-0 right-0 z-50 bg-[#0B1A30] shadow-xl backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Title -->
+           <a href="#" onclick="navigateTo('home')" class="flex items-center text-white font-cinzel font-bold text-xs sm:text-sm md:text-xl lg:text-2xl tracking-wide hover:opacity-90 btn-press max-w-[75%]">
+    <span class="truncate">NATIONAL REVIVAL FRONT</span>
+</a>
+
+            <!-- Mobile menu button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none p-2 btn-press">
+                <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+            </button>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center space-x-3">
+                <button onclick="navigateTo('home')" class="nav-pill nav-btn-home active btn-press">Home</button>
+                <button onclick="navigateTo('about')" class="nav-pill nav-btn-about btn-press">About Us</button>
+                <button onclick="navigateTo('inspirations')" class="nav-pill nav-btn-inspirations btn-press">Our Inspirations</button>
+                <button onclick="navigateTo('message')" class="nav-pill nav-btn-message btn-press">Founder's Message</button>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn5YFHHCUneBPn3EFJXnNdu_QFAJas2j_YaiMJbq-rqU7STw/viewform?usp=header" target="_blank" class="nav-pill btn-press">Join Us</a>
+                <button onclick="navigateTo('donation')" class="btn-press bg-[#FF4F18] text-white font-montserrat font-extrabold px-6 py-2.5 rounded-full text-sm uppercase tracking-wider hover:bg-[#E03E0F] shadow-lg shadow-orange-500/20">Donation</button>
+            </nav>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0B1A30]/95 backdrop-blur-lg border-t border-white/10 px-4 pt-3 pb-6 space-y-3 shadow-xl">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left nav-pill nav-btn-home active btn-press">Home</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left nav-pill nav-btn-about btn-press">About Us</button>
+            <button onclick="navigateTo('inspirations'); toggleMobileMenu()" class="block w-full text-left nav-pill nav-btn-inspirations btn-press">Our Inspirations</button>
+            <button onclick="navigateTo('message'); toggleMobileMenu()" class="block w-full text-left nav-pill nav-btn-message btn-press">Founder's Message</button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn5YFHHCUneBPn3EFJXnNdu_QFAJas2j_YaiMJbq-rqU7STw/viewform?usp=header" target="_blank" class="block w-full text-center nav-pill btn-press">Join Us</a>
+            <button onclick="navigateTo('donation'); toggleMobileMenu()" class="block w-full text-center btn-press bg-[#FF4F18] text-white font-montserrat font-extrabold py-3 rounded-full text-sm uppercase tracking-wider hover:bg-[#E03E0F]">Donation</button>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="flex-grow pt-20">
+
+        <!-- ================= PAGE 1: LANDING PAGE ================= -->
+        <section id="page-home" class="page-fade">
+            <!-- Hero Section -->
+            <div class="relative bg-page1 min-h-[90vh] md:min-h-screen flex items-center">
+                <!-- Overlay Gradients for Depth & Text Contrast -->                
+                <div class="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 md:py-20 w-full z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="text-white space-y-8 select-text">
+                        <div class="space-y-4">
+                            <h1 class="font-montserrat font-black text-3xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight leading-tight uppercase flex flex-col">
+                                <span class="drop-shadow-md">STRENGTH</span>
+                                <span class="drop-shadow-md text-[#FF4F18]">REVIVAL</span>
+                                <span class="drop-shadow-md">PROGRESS</span>
+                            </h1>
+                        </div>
+                        
+<!-- Premium Redirect Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button onclick="navigateTo('manifesto')"
+    class="btn-press bg-[#FF4F18] hover:bg-[#E03E0F] text-white font-montserrat font-black px-8 py-4 rounded-full text-sm md:text-base tracking-widest uppercase shadow-xl shadow-orange-500/30">
+    OUR MANIFESTO
+</button>
+
+    <button onclick="navigateTo('constitution')" 
+        class="btn-press bg-[#FF4F18] hover:bg-[#E03E0F] text-white font-montserrat font-black px-8 py-4 rounded-full text-sm md:text-base tracking-widest uppercase shadow-xl shadow-orange-500/30">
+        OUR CONSTITUTION
+    </button>
+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Value Banner (Navy Blue Bar) -->
+            <div class="bg-[#0B1A30] text-white py-12 select-text border-y border-white/5 shadow-2xl">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Value 1 -->
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-white/5 transition duration-300">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[#FF4F18]/15 flex items-center justify-center text-[#FF4F18]">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-montserrat font-bold text-lg text-white">People First</h3>
+                                <p class="text-slate-300 text-sm mt-1">Every policy, every decision puts citizens first.</p>
+                            </div>
+                        </div>
+                        <!-- Value 2 -->
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-white/5 transition duration-300">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/15 flex items-center justify-center text-blue-400">
+                                <i class="fa-solid fa-chart-line text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-montserrat font-bold text-lg text-white">Development for All</h3>
+                                <p class="text-slate-300 text-sm mt-1">Inclusive growth that reaches every corner.</p>
+                            </div>
+                        </div>
+                        <!-- Value 3 -->
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-white/5 transition duration-300">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-montserrat font-bold text-lg text-white">Strong & Secure India</h3>
+                                <p class="text-slate-300 text-sm mt-1">National security, internal peace and justice.</p>
+                            </div>
+                        </div>
+                        <!-- Value 4 -->
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-white/5 transition duration-300">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-yellow-500/15 flex items-center justify-center text-yellow-400">
+                                <i class="fa-solid fa-leaf text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-montserrat font-bold text-lg text-white">Sustainable Future</h3>
+                                <p class="text-slate-300 text-sm mt-1">Building a cleaner, greener and self-reliant India.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Area (White Content Area) -->
+            <footer class="bg-white text-[#0B1A30] py-16 border-t border-slate-100 select-text">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <!-- Left Foot Block (Vision) -->
+                        <div class="space-y-4">
+                            <h5 class="text-[#FF4F18] font-montserrat font-bold text-sm tracking-widest uppercase">OUR VISION</h5>
+                            <h2 class="text-[#0B1A30] font-montserrat font-extrabold text-3xl md:text-4xl leading-tight">
+                                Building a Better India,<br><span class="text-[#FF4F18]">Together.</span>
+                            </h2>
+                            <p class="text-slate-600 leading-relaxed max-w-xl text-base">
+                                We are committed to good governance, economic growth, social justice and national pride. Our roadmap focuses on real change, accountability and a brighter future for every Indian.
+                            </p>
+                        </div>
+
+                        <!-- Right Foot Block (Contact & Socials) -->
+                        <div class="space-y-8 lg:pl-12 text-center lg:text-left">
+                            <div class="space-y-4">
+                                <h4 class="text-lg font-montserrat font-extrabold uppercase tracking-wide">CONNECT WITH US</h4>
+                                <a href="mailto:nationalrevivalfront@gmail.com" class="flex items-center space-x-3 text-slate-700 hover:text-[#FF4F18] transition duration-200 text-lg group">
+                                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-[#FF4F18]/10 transition duration-200">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <span class="font-medium underline decoration-slate-300 group-hover:decoration-[#FF4F18]">nationalrevivalfront@gmail.com</span>
+                                </a>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h4 class="text-xs font-montserrat font-extrabold text-slate-400 uppercase tracking-widest">OUR SOCIAL HANDLES:</h4>
+                                <div class="flex justify-center lg:justify-start items-center space-x-4">
+                                    <!-- Facebook Button -->
+                                    <a href="https://www.facebook.com/profile.php?id=61590626311332" target="_blank" class="btn-press w-12 h-12 rounded-full bg-[#1877F2] text-white flex items-center justify-center shadow-lg hover:brightness-110 transition duration-200">
+                                        <i class="fa-brands fa-facebook-f text-xl"></i>
+                                    </a>
+                                    <!-- Instagram Button -->
+                                    <a href="https://www.instagram.com/nationalrevivalfrontofficial/?hl=en" target="_blank" class="btn-press w-12 h-12 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white flex items-center justify-center shadow-lg hover:brightness-110 transition duration-200">
+                                        <i class="fa-brands fa-instagram text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Copyright Notice -->
+<div class="mt-12 pt-6 border-t border-slate-200 text-center">
+    <p class="text-black text-xs md:text-sm leading-relaxed max-w-6xl mx-auto">
+        Copyright © 2026 National Revival Front. All rights reserved.
+        Commercial and non-commercial redistribution, modification, or use of this source code,
+        in whole or in part, without the express written permission of the copyright holder is strictly prohibited.
+    </p>
+</div>
+            </footer>
+        </section>
+
+<!-- ================= PAGE 2: OUR MANIFESTO ================= -->
+<section id="page-manifesto" class="page-fade hidden-page select-text">
+    <div class="bg-manifesto min-h-screen flex flex-col justify-center items-center py-16 px-4">
+
+        <!-- Floating Manifesto Card -->
+<div class="relative z-10 max-w-4xl bg-white/88 backdrop-blur-xl rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.25)] border border-white/50 overflow-hidden">            <!-- Content -->
+            <div class="relative z-10 p-8 md:p-12 text-center space-y-8">
+
+                <h1 class="font-montserrat font-extrabold text-4xl md:text-5xl text-slate-900 uppercase tracking-wider pb-2 border-b-2 border-[#FF4F18]/50 inline-block">
+                    OUR MANIFESTO
+                </h1>
+
+                <div class="space-y-6 text-slate-800 text-sm sm:text-base md:text-lg leading-relaxed text-left md:text-justify font-serif-content">
+                    <p>
+                        India stands at a crossroads. Blessed with the world's largest youth population, a civilisational heritage spanning millennia, and a democratic tradition that has endured against all odds, India possesses every ingredient required for greatness.
+                    </p>
+
+                    <p>
+                        The National Revival Front was born from the conviction that India deserves better — that the problems afflicting our nation are not inevitable, but the product of failed policies, captured institutions, and a political class that has substituted slogans for solutions.
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-center">
+                    <a href="https://drive.google.com/file/d/1Go9uOcNrubhH5gDh2Pp4KMNN20wZ8Dx6/view?usp=sharing"
+                       target="_blank"
+                       class="btn-press bg-[#FF4F18] hover:bg-[#E03E0F] text-white font-montserrat font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wider">
+                        VIEW MANIFESTO
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+        <!-- ================= PAGE 3: OUR CONSTITUTION ================= -->
+       <section id="page-constitution" class="page-fade hidden-page select-text">
+    <div class="bg-constitution min-h-screen flex flex-col justify-center items-center py-16 px-4">
+
+        <!-- Floating Constitution Card -->
+        <div class="relative max-w-3xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+
+            <!-- Background Image Inside Card -->
+            <div class="absolute inset-0">
+                <img src="./Images/ConstitutionBG.png"
+                     alt="NRF Constitution"
+                     class="w-full h-full object-cover">
+            </div>
+
+            <!-- White Overlay -->
+            <div class="absolute inset-0 bg-white/88"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 p-8 md:p-12 text-center space-y-8">
+
+                <h1 class="font-montserrat font-extrabold text-3xl md:text-4xl text-slate-900 uppercase tracking-wider pb-2 border-b-2 border-[#FF4F18]/50 inline-block">
+                    OUR CONSTITUTION
+                </h1>
+
+                <div class="py-4">
+                    <p class="font-serif-content text-xl md:text-2xl text-[#0B1A30] font-bold leading-relaxed">
+                        We are sorry, the constitution of the
+                        <span class="text-[#FF4F18]">NATIONAL REVIVAL FRONT (NRF)</span>
+                        is under process and will be uploaded soon.
+                    </p>
+                </div>
+
+                <div class="pt-4 flex justify-center">
+                    <button onclick="navigateTo('home')"
+                        class="btn-press bg-slate-900 hover:bg-slate-800 text-white font-montserrat font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wider">
+                        Go Back Home
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+        <!-- ================= PAGE 4: DONATION ================= -->
+<section id="page-donation" class="page-fade hidden-page select-text">
+    <div class="bg-donate min-h-screen flex flex-col justify-center items-center py-16 px-4">
+
+        <!-- Floating Donation Card -->
+        <div class="relative max-w-2xl rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.25)] border border-white/50 overflow-hidden">
+
+            <!-- Background Image INSIDE Card -->
+            <div class="absolute inset-0">
+                <img src="./Images/DonationBG.png"
+                     alt="Donation Background"
+                     class="w-full h-full object-cover">
+            </div>
+
+            <!-- White Overlay -->
+            <div class="absolute inset-0 bg-white/88"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 p-10 md:p-14 text-center space-y-8">
+
+                <div class="w-20 h-20 bg-[#FF4F18]/10 rounded-full flex items-center justify-center mx-auto text-[#FF4F18]">
+                    <i class="fa-solid fa-hand-holding-dollar text-4xl"></i>
+                </div>
+
+                <h1 class="font-montserrat font-black text-3xl md:text-4xl text-slate-900 uppercase tracking-wider">
+                    DONATION
+                </h1>
+
+                <p class="font-serif-content text-lg md:text-xl text-slate-700 italic max-w-lg mx-auto">
+                    "Currently we don't have any bank account for this political party."
+                </p>
+
+                <div class="pt-6">
+                    <button onclick="navigateTo('home')"
+                        class="btn-press bg-slate-900 hover:bg-slate-800 text-white font-montserrat font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wider">
+                        Return Home
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+        <!-- ================= PAGE 5: ABOUT US ================= -->
+<section id="page-about" class="page-fade hidden-page select-text">
+    <div class="bg-about min-h-screen flex flex-col justify-center items-center py-16 px-4 relative overflow-hidden">
+
+        <!-- Floating content box -->
+        <div class="relative z-10 max-w-4xl p-8 md:p-14 rounded-3xl shadow-2xl border border-white/40 overflow-hidden">
+
+            <!-- Background Image INSIDE the card -->
+            <div class="absolute inset-0">
+                <img src="./Images/AboutBG.png"
+                     alt="NRF Flag"
+                     class="w-full h-full object-cover">
+            </div>
+
+            <!-- White overlay -->
+            <div class="absolute inset-0 bg-white/85"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 space-y-10">
+
+                <h1 class="text-center font-montserrat font-extrabold text-3xl md:text-5xl uppercase tracking-wider text-slate-900 border-b-4 border-[#FF4F18] pb-2 inline-block mx-auto w-full">
+                    ABOUT US
+                </h1>
+
+                <div class="border-l-4 border-[#FF4F18] pl-6 py-2 bg-orange-500/5 rounded-r-xl">
+                    <p class="font-serif-content italic text-xl md:text-2xl text-[#0B1A30] font-bold">
+                        "We did not exist because India needed another party. We exist because India needed a different kind of party."
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-slate-700 font-serif-content text-base md:text-lg leading-relaxed text-justify">
+                    <p>
+                        The National Revival Front (NRF) is a national political party rooted in the belief that India's challenges are not inevitable — they are the product of decades of policy failure, institutional decay, and a political class that has governed for itself rather than for the people. We exist to change that.
+                    </p>
+
+                    <p>
+                        The NRF draws its inspiration from India's freedom struggle, its constitutional values, and the quiet resilience of its farmers, workers, women, and youth — who have waited long enough. We are not a party of the privileged. We are not a party of dynasties. We are a party of purpose.
+                    </p>
+
+                    <p>
+                        We should not get united by a single leader's personality but by a shared vision: an India where every child gets a fair start, every worker gets a fair wage, and every citizen gets a fair say.
+                    </p>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 flex flex-col items-center space-y-3">
+                    <div class="flex items-center space-x-3 text-slate-900 font-montserrat font-extrabold text-sm md:text-base tracking-wide uppercase">
+                        <span class="text-[#FF4F18]">●</span>
+                        <span>OUR SYMBOL: Saffron Phoenix guarded by green olive branches</span>
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-[#FF4F18] font-montserrat font-black text-base md:text-lg tracking-wider uppercase">
+                        <i class="fa-solid fa-flag"></i>
+                        <span>OUR VISION: Building a better India together.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <!-- ================= PAGE 6: OUR INSPIRATIONS (UPDATED WITH INTERACTIVE BIOGRAPHY CARDS) ================= -->
+        <section id="page-inspirations" class="page-fade hidden-page bg-inspirations min-h-[calc(100vh-80px)] py-12 px-4 sm:px-6 relative">
+            <div class="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
+                
+                <!-- Main Header Overlay -->
+                <div class="w-full max-w-4xl mb-12 text-center bg-[#0B1A30] py-5 px-6 sm:px-12 rounded-3xl border border-white/10 shadow-xl">
+                    <h1 class="font-cinzel font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-widest uppercase">
+                        OUR INSPIRATIONS
+                    </h1>
+                    <p class="font-sans text-xs sm:text-sm text-slate-300 font-medium tracking-wide mt-2">
+                        Guiding Principles for a Rising Nation. Click on portraits or buttons to learn about their legacy.
+                    </p>
+                </div>
+
+                <!-- Inspirations Responsive Card Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 w-full px-2 sm:px-0">
+                    
+                    <!-- Subhash Chandra Bose -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Subhas_Chandra_Bose" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Subhas_Chandra_Bose_NRB.jpg" alt="Netaji Subhash Chandra Bose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Subhash Chandra Bose
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Revolutionary & Patriot</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Subhas_Chandra_Bose" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- APJ Abdul Kalam -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/A._P._J._Abdul_Kalam" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/A._P._J._Abdul_Kalam_in_2008.jpg" alt="APJ Abdul Kalam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    APJ Abdul Kalam
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Scientist & President</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/A._P._J._Abdul_Kalam" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- JRD Tata -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/J._R._D._Tata" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/J.R.D._Tata_%281955%29.jpg" alt="JRD Tata" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    JRD Tata
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Industrialist & Visionary</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/J._R._D._Tata" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Jagadish Chandra Bose -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Jagadish_Chandra_Bose" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/J.C.Bose.JPG" alt="Jagadish Chandra Bose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                   Jagadish Chandra Bose
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Pioneering Polymath Scientist</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Jagadish_Chandra_Bose" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Swami Vivekananda -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Swami_Vivekananda" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Swami_Vivekananda_1893_Scanned_Image.jpg/960px-Swami_Vivekananda_1893_Scanned_Image.jpg" alt="Swami Vivekananda" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Swami Vivekananda
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Philosopher & Spiritual Guide</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Swami_Vivekananda" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rani Lakshmibai -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Rani_of_Jhansi" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Rani_of_jhansi.jpg" alt="Rani Lakshmibai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Rani Lakshmibai
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Warrior Queen of Jhansi</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Rani_of_Jhansi" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sardar Vallabhbhai Patel -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Vallabhbhai_Patel" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Sardar_patel_%28cropped%29.jpg" alt="Sardar Vallabhbhai Patel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Sardar Vallabhbhai Patel
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">The Iron Man of India</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Vallabhbhai_Patel" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dr. Bidhan Chandra Roy -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Bidhan_Chandra_Roy" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Photograph_of_Dr._Bidhan_Chandra_Roy%2C_2nd_Chief_Minister_of_West_Bengal.jpg/960px-Photograph_of_Dr._Bidhan_Chandra_Roy%2C_2nd_Chief_Minister_of_West_Bengal.jpg" alt="Dr. Bidhan Chandra Roy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Dr. Bidhan Chandra Roy
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Physician & Modern Maker of Bengal</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Bidhan_Chandra_Roy" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Savitribai Phule -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Savitribai_Phule" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Savitribai_Phule_statue%2C_Maharashtra_sadan%2C_New_Delhi.jpg/960px-Savitribai_Phule_statue%2C_Maharashtra_sadan%2C_New_Delhi.jpg" alt="Savitribai Phule" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Savitribai Phule
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Social Reformer & Educator</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Savitribai_Phule" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kiran Bedi -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+                        <a href="https://en.wikipedia.org/wiki/Kiran_Bedi" target="_blank" class="block aspect-[3/4] w-full overflow-hidden relative bg-slate-100 btn-press">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Dr._Kiran_Bedi_in_2017_%28cropped%29.jpg" alt="Kiran Bedi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 text-slate-900 font-montserrat font-bold text-xs px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                    Read Biography <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50 border-t border-slate-100 select-text">
+                            <div class="mb-4">
+                                <h3 class="font-montserrat font-black text-slate-800 text-sm md:text-base leading-tight tracking-wide select-text">
+                                    Kiran Bedi
+                                </h3>
+                                <span class="text-xs text-slate-500 font-medium select-text">Pioneering Officer & Administrator</span>
+                            </div>
+                            <a href="https://en.wikipedia.org/wiki/Kiran_Bedi" target="_blank" class="btn-press mt-auto inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white font-montserrat font-bold text-xs py-2 px-3 rounded-lg transition-colors duration-200">
+                                <span>WIKIPEDIA</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+<!-- Maharana Pratap -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Maharana_Pratap" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Maharana_Pratap_By_Surendra_Singh_Shaktawat.jpg/500px-Maharana_Pratap_By_Surendra_Singh_Shaktawat.jpg"
+             alt="Maharana Pratap"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Maharana Pratap</h3>
+            <span class="text-xs text-slate-500">Courage & Resistance</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Maharana_Pratap" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+<!-- Bappa Rawal -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Bappa_Rawal" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Bappa_Rawal.jpg"
+             alt="Bappa Rawal"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Bappa Rawal</h3>
+            <span class="text-xs text-slate-500">Founder of Mewar</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Bappa_Rawal" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+<!-- Chhatrapati Shivaji Maharaj -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Shivaji" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://shivaji.du.ac.in/img/chhtraptishivaji.jpg"
+             alt="Chhatrapati Shivaji Maharaj"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Chhatrapati Shivaji Maharaj</h3>
+            <span class="text-xs text-slate-500">Warrior King & Nation Builder</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Shivaji" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+<!-- Sam Manekshaw -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Sam_Manekshaw" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Field_marshal_SHFJ_Manekshaw.jpg"
+             alt="Sam Manekshaw"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Sam Manekshaw</h3>
+            <span class="text-xs text-slate-500">Field Marshal & Military Leader</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Sam_Manekshaw" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+<!-- Homi J. Bhabha -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Homi_J._Bhabha" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Homi_Jehangir_Bhabha_1960s.jpg"
+             alt="Homi J. Bhabha"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Homi J. Bhabha</h3>
+            <span class="text-xs text-slate-500">Father of India's Nuclear Programme</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Homi_J._Bhabha" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+<!-- Vikram Sarabhai -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-slate-200/60 hover:border-[#FF4F18]/30 transition-all duration-300 flex flex-col h-full">
+    <a href="https://en.wikipedia.org/wiki/Vikram_Sarabhai" target="_blank" class="block aspect-[3/4] overflow-hidden relative bg-slate-100 btn-press">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Dr_Vikram_Sarabhai_ISRO.webp"
+             alt="Vikram Sarabhai"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </a>
+    <div class="p-4 flex-grow flex flex-col justify-between bg-slate-50">
+        <div>
+            <h3 class="font-montserrat font-black text-sm md:text-base">Vikram Sarabhai</h3>
+            <span class="text-xs text-slate-500">Father of India's Space Programme</span>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Vikram_Sarabhai" target="_blank"
+           class="btn-press mt-4 inline-flex items-center justify-center gap-2 bg-[#0B1A30] hover:bg-[#FF4F18] text-white text-xs py-2 px-3 rounded-lg">
+            WIKIPEDIA
+        </a>
+    </div>
+</div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- ================= PAGE 7: FOUNDER'S MESSAGE ================= -->
+<section id="page-message" class="page-fade hidden-page select-text">
+    <div class="bg-founder-message min-h-screen flex flex-col justify-center items-center py-16 px-4">
+
+        <div class="relative max-w-4xl w-full rounded-3xl shadow-2xl border border-white/30 overflow-hidden">
+
+            <!-- Background Image -->
+            <div class="absolute inset-0">
+                <img src="./Images/FounderMessageBG.png"
+                     alt="Founder's Message Background"
+                     class="w-full h-full object-cover object-center">
+            </div>
+
+            <!-- White Overlay -->
+            <div class="absolute inset-0 bg-white/88"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 p-8 md:p-14">
+
+                <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-center uppercase tracking-wider text-slate-900 border-b-4 border-[#FF4F18] pb-4">
+                    FOUNDER'S MESSAGE
+                </h1>
+ <div class="border-l-4 border-[#FF4F18] pl-6 py-2 bg-orange-500/5 rounded-r-xl">
+                    <p class="font-serif-content italic text-xl md:text-2xl text-[#0B1A30] font-bold">
+                        "A Nation Does Not Decline by Accident"
+                    </p>
+                </div>
+
+                <div class="space-y-6 text-slate-700 font-serif-content text-base md:text-lg leading-relaxed text-justify">
+                    <p>
+                        India is not a problem to be managed. India is a civilisation waiting to be unleashed.
+                    I have walked the villages of this land where children study under broken roofs. I have sat with farmers who have surrendered everything and received nothing. I have stood in hospitals where the poor are turned away, and in courts where justice runs decades behind the man who needs it most.
+                    </p>
+
+                    <p>
+                                     Through all of this, I have heard one question asked in every language, in every state, in every corner of this extraordinary nation:
+                    <strong>Why is India not yet what it should be?</strong>
+                    That question is the reason the National Revival Front exists. Not rage. Not ambition. Responsibility.
+                    </p>
+
+                    <p>
+                        We are not a party of slogans. Every promise in our manifesto comes with a plan, a cost estimate, and a timeline. We will not rename old schemes and call it reform. We will not announce inaugurations as achievements. We will not govern India by press release.
+                    </p>
+                    <p>
+                       When we succeed, you will see it in your child's classroom, in your hospital's waiting room, in your farmer father's bank account, and in the safety your daughter feels walking home after dark.
+                    </p>
+                    <p>
+                    The NRF will be judged—and should be judged—by outcomes, not optics. We welcome that standard.
+                </p>
+                <p>
+                    At the end, I will address three words to the citizens of the Union of India:
+                </p>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="navigateTo('home')"
+                        class="btn-press bg-[#FF4F18] hover:bg-[#E03E0F] text-white font-montserrat font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wider">
+                        Return Home
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    </main>
+
+    <!-- Vanilla Javascript Logic for Multi-page simulation & Active states -->
+    <script>
+        // Store current active tab
+        let currentPage = 'home';
+
+        // Function to smoothly navigate between virtual pages
+        function navigateTo(pageId) {
+            // Update active link styling in both desktop and mobile headers
+            document.querySelectorAll('.nav-pill').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Set the new active pills
+            document.querySelectorAll(`.nav-btn-${pageId}`).forEach(btn => {
+                btn.classList.add('active');
+            });
+
+            // Smooth fade transition between virtual pages
+            const pages = ['home', 'manifesto', 'constitution', 'donation', 'about', 'inspirations', 'message'];
+            
+            pages.forEach(p => {
+                const pageEl = document.getElementById(`page-${p}`);
+                if (pageEl) {
+                    if (p === pageId) {
+                        pageEl.classList.remove('hidden-page');
+                        // Scroll back to top on page navigation
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        pageEl.classList.add('hidden-page');
+                    }
+                }
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            }
+
+            currentPage = pageId;
+        }
+
+        // Toggle mobile responsive menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.className = 'fa-solid fa-xmark text-2xl';
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            }
+        }
+
+        // Custom behavior to watch scrolling and add blurred backdrop background to navbar
+
+    </script>
+</body>
+</html>
